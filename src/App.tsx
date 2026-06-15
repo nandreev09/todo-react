@@ -69,7 +69,7 @@ const App: React.FC = () => {
       <div style={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
         <button
           onClick={() =>
-            setFilter("all")
+            setFilter(FILTER_TYPE.ALL)
           }
         >
           Все задачи
