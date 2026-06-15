@@ -7,36 +7,34 @@ import TaskForm from "./components/TaskForm";
 import TaskItem from "./components/TaskItem";
 import { taskReducer } from "./reducer/taskReducer";
 import type { Task } from "./types";
+import type { FilterType } from "./types";
+import { FILTER_TYPE, TASK_ACTIONS } from "./constants";
 
-type FilterType =
-  | "all"
-  | "completed"
-  | "active";
 
 const App: React.FC = () => {
   const [tasks, dispatch] =
     useReducer(taskReducer, []);
 
   const [filter, setFilter] =
-    useState<FilterType>("all");
+    useState<FilterType>(FILTER_TYPE.ALL);
 
   const addTask = (text: string) => {
     dispatch({
-      type: "ADD_TASK",
+      type: TASK_ACTIONS.ADD,
       payload: text,
     });
   };
 
   const deleteTask = (id: number) => {
     dispatch({
-      type: "DELETE_TASK",
+      type: TASK_ACTIONS.DELETE,
       payload: id,
     });
   };
 
   const toggleTask = (id: number) => {
     dispatch({
-      type: "TOGGLE_TASK",
+      type: TASK_ACTIONS.TOGGLE,
       payload: id,
     });
   };
@@ -44,10 +42,10 @@ const App: React.FC = () => {
   const filteredTasks = tasks.filter(
     (task: Task) => {
       switch (filter) {
-        case "completed":
+        case FILTER_TYPE.COMPLETED:
           return task.completed;
 
-        case "active":
+        case FILTER_TYPE.ACTIVE:
           return !task.completed;
 
         default:
@@ -79,7 +77,7 @@ const App: React.FC = () => {
 
         <button
           onClick={() =>
-            setFilter("completed")
+            setFilter(FILTER_TYPE.COMPLETED)
           }
         >
           Выполненные
@@ -87,7 +85,7 @@ const App: React.FC = () => {
 
         <button
           onClick={() =>
-            setFilter("active")
+            setFilter(FILTER_TYPE.ACTIVE)
           }
         >
           Невыполненные

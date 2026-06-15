@@ -1,11 +1,13 @@
-import type { Task, TaskAction } from "../types";
+import { TASK_ACTIONS } from "../constants";
+import type { Task} from "../types";
+import type { TaskAction } from "../types";
 
 export const taskReducer = (
   state: Task[],
   action: TaskAction
 ): Task[] => {
   switch (action.type) {
-    case "ADD_TASK":
+    case TASK_ACTIONS.ADD:
       return [
         ...state,
         {
@@ -15,12 +17,12 @@ export const taskReducer = (
         },
       ];
 
-    case "DELETE_TASK":
+    case TASK_ACTIONS.DELETE:
       return state.filter(
         task => task.id !== action.payload
       );
 
-    case "TOGGLE_TASK":
+    case TASK_ACTIONS.TOGGLE:
       return state.map(task =>
         task.id === action.payload
           ? {
