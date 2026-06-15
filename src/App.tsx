@@ -57,19 +57,18 @@ const App: React.FC = () => {
   );
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Список задач</h1>
+  <div style={{
+    display: 'flex', 
+    justifyContent: 'center',
+    alignItems: 'center', marginTop: '20px'}}>
+     <div style={{ display: "flex", flexDirection: 'column', gap: '20px', alignItems: 'center'}}>
+      <h1 style={{margin: '0'}}>Список задач</h1>
 
       <TaskForm
         onAddTask={addTask}
       />
 
-      <div
-        style={{
-          marginTop: "20px",
-          marginBottom: "20px",
-        }}
-      >
+      <div style={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
         <button
           onClick={() =>
             setFilter("all")
@@ -104,6 +103,8 @@ const App: React.FC = () => {
         />
       ))}
     </div>
+  </div>
+   
   );
 };
 
